@@ -79,16 +79,10 @@ class DeltaManager:
         df.write_delta(str(table_path))
 ```
 
-<p>
-<div class="column">
-    <img src="./img/execution.png" style="height: 45rem"/>
-  </div>
-</p>
-
 Once in the directory *src* in your terminal, execute the `main.py` module
 
 ```bash
- python3 main.py
+ python3 src/main.py
  ```
 
 After the data is stored locally, by running the main module all the analysis will be performed and data will be validated using the defined models.
@@ -100,3 +94,94 @@ After the data is stored locally, by running the main module all the analysis wi
 </p>
 
 
+### Step 4: Querying Delta tables
+
+By executing the `main.py`, will be answered these questions:
+
+
+#### o Number of posts per user.
+#### o The user who has written the longest post (by body length).
+#### o One additional query of your choice.
+
+<p>
+<div class="column">
+    <img src="./img/execution.png" style="height: 45rem"/>
+  </div>
+</p>
+
+### Design Choices
+
+#### Project Structure:
+
+* Modular design with separate files for different concerns
+* Clear separation between data models, data fetching, storage, and analysis
+* Async operations for efficient data fetching
+
+
+#### Technology Choices:
+
+* httpx: Modern async HTTP client for Python
+* Pydantic: Data validation and settings management
+* Polars: Fast DataFrame library with good Delta Lake support
+* delta-sharing: For Delta Lake table management
+* asyncio: For asynchronous operations
+
+
+#### Data Pipeline:
+
+* Asynchronous data fetching from multiple endpoints
+* Strong data validation using Pydantic models
+* Efficient storage using Delta format
+* Lazy evaluation in Polars for optimized query performance
+
+
+### Key Components
+
+#### Models (models.py):
+
+* Pydantic models for data validation
+* Clear schema definition for both Users and Posts
+
+
+#### Data Fetcher (data_fetcher.py):
+
+* Async data fetching using httpx
+* Concurrent fetching of users and posts
+* Built-in error handling and validation
+
+
+#### Delta Manager (delta_manager.py):
+
+* Abstraction for Delta table operations
+* Handles both reading and writing operations
+* Path management for local storage
+
+
+#### Analysis (analysis.py):
+
+* Query implementations using Polars
+* Lazy evaluation for better performance
+* Join operations between users and posts
+
+
+### Queries Implemented
+
+#### Number of posts per user:
+
+* Groups posts by user
+* Joins with user data for readable output
+* Returns user names with post counts
+
+
+#### User with longest post:
+
+* Calculates body length for each post
+* Finds maximum length post
+* Returns user name and post details
+
+
+#### Average post length per user (additional query):
+
+* Calculates average post length per user
+* Orders users by average post length
+* Provides insights into user engagement
