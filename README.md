@@ -11,6 +11,12 @@ Clone the repository
 git clone https://github.com/fvgm-spec/jsonplaceholder_api_fetcher.git
 ```
 
+Create and activate a virtual environment
+```bash
+python3 -m venv data_fetcher
+source data_fetcher/bin/activate
+```
+
 Install dependencies
 ```bash
 pip3 install -r requirements.txt
