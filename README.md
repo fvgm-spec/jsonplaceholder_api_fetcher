@@ -100,8 +100,76 @@ By executing the `main.py`, will be answered these questions:
 
 
 #### o Number of posts per user.
+
+```python
+## analysys.py
+def analyze_data(delta_manager: DeltaManager):
+    posts_df = delta_manager.read_delta("posts")
+    users_df = delta_manager.read_delta("users")
+    
+    ## Number of posts per user
+    posts_per_user = (
+        posts_df.lazy()
+        .groupby("userId")
+        .agg(pl.count("id").alias("post_count"))
+        .join(
+            users_df.lazy().select(["id", "name"]),
+            left_on="userId",
+            right_on="id"
+        )
+        .select(["name", "post_count"])
+        .collect()
+    )
+```
+
 #### o The user who has written the longest post (by body length).
-#### o One additional query of your choice.
+
+```python
+## analysys.py
+    
+    ...
+    ## User with longest post
+    longest_post = (
+        posts_df.lazy()
+        .with_columns(pl.col("body").str.lengths().alias("body_length"))
+        .join(
+            users_df.lazy().select(["id", "name"]),
+            left_on="userId",
+            right_on="id"
+        )
+        .select(["name", "title", "body_length"])
+        .sort("body_length", descending=True)
+        .limit(1)
+        .collect()
+    )
+```
+
+
+#### o Average post lenght per user.
+
+```python
+## analysys.py
+    
+    ...
+    ## Average post length per user
+    avg_post_length = (
+        posts_df.lazy()
+        .with_columns(pl.col("body").str.lengths().alias("body_length"))
+        .groupby("userId")
+        .agg(
+            pl.mean("body_length").alias("avg_post_length")
+        )
+        .join(
+            users_df.lazy().select(["id", "name"]),
+            left_on="userId",
+            right_on="id"
+        )
+        .select(["name", "avg_post_length"])
+        .sort("avg_post_length", descending=True)
+        .collect()
+    )
+```
+
 
 <p>
 <div class="column">
@@ -137,27 +205,27 @@ By executing the `main.py`, will be answered these questions:
 
 ### Key Components
 
-#### Models (models.py):
+#### Models ([models.py](https://github.com/fvgm-spec/jsonplaceholder_api_fetcher/blob/main/src/models.py)):
 
 * Pydantic models for data validation
 * Clear schema definition for both Users and Posts
 
 
-#### Data Fetcher (data_fetcher.py):
+#### Data Fetcher ([data_fetcher.py](https://github.com/fvgm-spec/jsonplaceholder_api_fetcher/blob/main/src/data_fetcher.py)):
 
 * Async data fetching using httpx
 * Concurrent fetching of users and posts
 * Built-in error handling and validation
 
 
-#### Delta Manager (delta_manager.py):
+#### Delta Manager ([delta_manager.py](https://github.com/fvgm-spec/jsonplaceholder_api_fetcher/blob/main/src/delta_manager.py)):
 
 * Abstraction for Delta table operations
 * Handles both reading and writing operations
 * Path management for local storage
 
 
-#### Analysis (analysis.py):
+#### Analysis ([analysis.py](https://github.com/fvgm-spec/jsonplaceholder_api_fetcher/blob/main/src/analysis.py)):
 
 * Query implementations using Polars
 * Lazy evaluation for better performance
