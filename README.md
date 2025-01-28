@@ -87,7 +87,7 @@ class DeltaManager:
 
 <p>
 <div class="column">
-    <img src="./img/execution.png" style="height: 12rem"/>
+    <img src="./img/execution.png" style="height: 25rem"/>
   </div>
 </p>
 
@@ -101,7 +101,7 @@ After the data is stored locally, by running the main module all the analysis wi
 
 <p>
 <div class="column">
-    <img src="./img/directory.png" style="height: 12rem"/>
+    <img src="./img/directory.png" style="height: 25rem"/>
   </div>
 </p>
 
