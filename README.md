@@ -16,9 +16,7 @@ Install dependencies
 pip3 install -r requirements.txt
 ```
 
-### Step 1
-
-Fetch data from the /posts and /users endpoints
+### Step 1: Fetch data from the /posts and /users endpoints
 
 ```python
 ## data_fetcher.py
@@ -38,9 +36,7 @@ async def fetch_all_data():
     users_data, posts_data = await asyncio.gather(*tasks)
 ```
 
-### Step 2
-
-Data vlidation using Pydantic models
+### Step 2: Data vlidation using Pydantic models
 
 ```python
 ## models.py
@@ -61,9 +57,7 @@ class Post(BaseModel):
     body: str
 ```
 
-### Step 3
-
-Storing the validated data in Delta tables
+### Step 3: Storing the validated data in Delta tables
 
 In order to save the fetched data into local storage is used the `delta_manager.py` file in the *src* directory
 
@@ -87,7 +81,7 @@ class DeltaManager:
 
 <p>
 <div class="column">
-    <img src="./img/execution.png" style="height: 25rem"/>
+    <img src="./img/execution.png" style="height: 45rem"/>
   </div>
 </p>
 
