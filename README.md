@@ -59,7 +59,7 @@ class Post(BaseModel):
 
 ### Step 3: Storing the validated data in Delta tables
 
-In order to save the fetched data into local storage is used the `delta_manager.py` file in the *src* directory
+In order to save the fetched data into local storage is used the [delta_manager.py](https://github.com/fvgm-spec/jsonplaceholder_api_fetcher/blob/main/src/delta_manager.py) file in the *src* directory
 
 ```python
 ## delta_manager.py
