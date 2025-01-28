@@ -1,0 +1,5 @@
+httpx==0.24.1
+pydantic==2.0.2
+polars==0.19.3
+delta-sharing==0.5.0
+asyncio==3.4.3
