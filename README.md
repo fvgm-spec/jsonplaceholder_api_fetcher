@@ -79,7 +79,7 @@ class DeltaManager:
         df.write_delta(str(table_path))
 ```
 
-Once in the directory *src* in your terminal, execute the `main.py` module
+Once in your terminal, you just need to run the `main.py` module as follows:
 
 ```bash
  python3 src/main.py
