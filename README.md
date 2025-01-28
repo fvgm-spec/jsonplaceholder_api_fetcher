@@ -85,7 +85,7 @@ Once in the directory *src* in your terminal, execute the `main.py` module
  python3 src/main.py
  ```
 
-After the data is stored locally, by running the main module all the analysis will be performed and data will be validated using the defined models.
+After the data is stored locally (as shown in the image below) in the directory `delta_tables`, by running the *main.py* module all the analysis will be performed and data will be validated using the defined models.
 
 <p>
 <div class="column">
