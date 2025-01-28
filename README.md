@@ -102,7 +102,7 @@ By executing the `main.py`, will be answered these questions:
 #### o Number of posts per user.
 
 ```python
-## analysys.py
+## analysis.py
 def analyze_data(delta_manager: DeltaManager):
     posts_df = delta_manager.read_delta("posts")
     users_df = delta_manager.read_delta("users")
@@ -125,7 +125,7 @@ def analyze_data(delta_manager: DeltaManager):
 #### o The user who has written the longest post (by body length).
 
 ```python
-## analysys.py
+## analysis.py
     
     ...
     ## User with longest post
@@ -148,7 +148,7 @@ def analyze_data(delta_manager: DeltaManager):
 #### o Average post lenght per user.
 
 ```python
-## analysys.py
+## analysis.py
     
     ...
     ## Average post length per user
