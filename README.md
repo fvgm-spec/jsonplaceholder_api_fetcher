@@ -21,6 +21,13 @@ Install dependencies
 ```bash
 pip3 install -r requirements.txt
 ```
+When these steps are completed you will have a fully complete isolated environment to work
+
+<p>
+<div class="column">
+    <img src="./img/environment.png" style="height: 25rem"/>
+  </div>
+</p>
 
 ### Step 1: Fetch data from the /posts and /users endpoints
 
