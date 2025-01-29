@@ -49,7 +49,7 @@ async def fetch_all_data():
     users_data, posts_data = await asyncio.gather(*tasks)
 ```
 
-### Step 2: Data vlidation using Pydantic models
+### Step 2: Data validation using Pydantic models
 
 ```python
 ## models.py
