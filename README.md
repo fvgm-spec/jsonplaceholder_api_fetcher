@@ -109,7 +109,7 @@ After the data is stored locally (as shown in the image below) in the directory 
 
 ### Step 4: Querying Delta tables
 
-By executing the `main.py`, will be answered these questions:
+By executing the `main.py` file, will be answered these questions:
 
 
 #### o Number of posts per user.
